@@ -5,18 +5,18 @@ import { CommonModule } from '@angular/common';
   declarations: [],
   imports: [
     // Angular modules
-    CommonModule
+    CommonModule,
 
     // Needed modules
   ],
   exports: [
     // Exported Angular modules
-    CommonModule
+    CommonModule,
 
     // Export modules
     // Export components
     // Export directives
     // Export pipes
-  ]
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

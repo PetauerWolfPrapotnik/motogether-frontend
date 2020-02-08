@@ -14,8 +14,10 @@ import { throwIfAlreadyLoaded } from './guards/module-import.guard';
   ],
   exports: [
     // Export layout components
-  ]
+  ],
 })
 export class CoreModule {
-  constructor(@Optional() @SkipSelf() parentModule: CoreModule) { throwIfAlreadyLoaded(parentModule, 'CoreModule'); }
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    throwIfAlreadyLoaded(parentModule, 'CoreModule');
+  }
 }
