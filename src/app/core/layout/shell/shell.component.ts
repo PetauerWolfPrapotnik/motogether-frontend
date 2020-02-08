@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subject } from 'rxjs';
-import { map, shareReplay, takeUntil } from 'rxjs/operators';
+import { map, shareReplay, takeUntil, filter, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 
@@ -19,10 +19,15 @@ export class ShellComponent implements OnInit, OnDestroy {
 
   @ViewChild('drawer', { static: true }) drawer: MatSidenav;
 
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router) {}
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router) { }
 
   ngOnInit() {
-    this.router.events.pipe(takeUntil(this.onDestroy$)).subscribe(() => this.drawer.close());
+    // Auto close on navigation change
+    this.isHandset$.pipe(
+      filter((headset) => headset),
+      switchMap(() => this.router.events),
+      takeUntil(this.onDestroy$),
+    ).subscribe(() => this.drawer.close());
   }
 
   ngOnDestroy() {
