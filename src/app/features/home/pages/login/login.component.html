@@ -1,0 +1,35 @@
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-progress-bar
+      *ngIf="loading || errorMessage"
+      [mode]="errorMessage ? 'determinate' : 'indeterminate'"
+      [color]="errorMessage ? 'warn' : 'primary'"
+      value="100"
+    ></mat-progress-bar>
+    <mat-error class="form-error" *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+
+    <h1 class="title">Login</h1>
+
+    <div class="email">
+      <mat-form-field appearance="standard">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="example@email.com" />
+      </mat-form-field>
+    </div>
+    <div class="password">
+      <mat-form-field appearance="standard">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+    </div>
+
+    <div class="extra">
+      <a class="link" routerLink="/register">Already have an account?</a>
+      <span class="fill"></span>
+      <div class="buttons">
+        <button mat-button type="reset" [disabled]="loginForm.disabled">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid || loading">Login</button>
+      </div>
+    </div>
+  </mat-card>
+</form>

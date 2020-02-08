@@ -21,13 +21,22 @@
       <a mat-list-item routerLink="/" disabled>Home</a>
 
       <mat-divider></mat-divider>
-      <a mat-list-item routerLink="/login">Login</a>
-      <a mat-list-item routerLink="/register">Register</a>
 
-      <mat-divider></mat-divider>
+      <ng-container *ngIf="auth.isAuthenticated$ | async; else anonymous">
+        <a mat-list-item routerLink="/profile">Profile</a>
+        <a mat-list-item routerLink="/path-add">Add path</a>
+      </ng-container>
+      <ng-template #anonymous>
+        <a mat-list-item routerLink="/login">Login</a>
+        <a mat-list-item routerLink="/register">Register</a>
+      </ng-template>
 
-      <a mat-list-item routerLink="/about">About</a>
-      <a mat-list-item routerLink="/tos">Terms of Service</a>
+      <div class="sidebar-bottom">
+        <a mat-list-item *ngIf="auth.isAuthenticated$ | async" (click)="auth.logout$().subscribe()">Logout</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item routerLink="/about">About</a>
+        <a mat-list-item routerLink="/terms-of-service">Terms of Service</a>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
 

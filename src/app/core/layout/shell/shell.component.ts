@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { map, shareReplay, takeUntil, filter, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from '@app/core/auth/auth.service';
 
 @Component({
   selector: 'app-shell',
@@ -19,14 +20,13 @@ export class ShellComponent implements OnInit, OnDestroy {
 
   @ViewChild('drawer', { static: true }) drawer: MatSidenav;
 
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router) { }
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router, public auth: AuthService) { }
 
   ngOnInit() {
     // Auto close on navigation change
-    this.isHandset$.pipe(
-      filter((headset) => headset),
-      switchMap(() => this.router.events),
-      takeUntil(this.onDestroy$),
+    this.router.events.pipe(
+      filter(() => this.breakpointObserver.isMatched(Breakpoints.Handset)),
+      takeUntil(this.onDestroy$)
     ).subscribe(() => this.drawer.close());
   }
 

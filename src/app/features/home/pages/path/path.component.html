@@ -1,0 +1,18 @@
+<ng-container *ngIf="path$ | async as path">
+  <mat-card class="path">
+     <div style="align-self: center;">
+    <div style="text-align: left;">
+    <h1>{{ path.title }}</h1>
+    <p>Vodja: {{ path.owner_id }}</p>
+
+    <div>Opis: {{ path.description }}</div>
+
+    <div>Začetek: {{ path.start_date | date: 'medium' }}</div>
+    <div>Začetna lokacija: {{ path.title }}</div>
+    <div>Konec: {{ path.title }}</div>
+    <div>Ustvarjeno: {{ path.created_at | date: 'medium' }}</div>
+    <div>Posodobljeno: {{ path.updated_at | date: 'medium' }}</div>
+    </div>
+    </div>
+  </mat-card>
+</ng-container>

@@ -1,0 +1,57 @@
+<form class="path-add-form" [formGroup]="pathAddForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-progress-bar
+      *ngIf="loading || errorMessage"
+      [mode]="errorMessage ? 'determinate' : 'indeterminate'"
+      [color]="errorMessage ? 'warn' : 'primary'"
+      value="100"
+    ></mat-progress-bar>
+    <mat-error class="form-error" *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+
+    <h1 class="title">Add path</h1>
+
+    <div class="title">
+      <mat-form-field appearance="standard">
+        <mat-label>Title</mat-label>
+        <input matInput type="text" formControlName="title" placeholder="" />
+      </mat-form-field>
+    </div>
+
+    <div class="starting-time">
+      <mat-form-field appearance="standard">
+        <mat-label>Starting time</mat-label>
+        <input matInput type="datetime-local" formControlName="startTime" placeholder="start date">
+      </mat-form-field>
+    </div>
+
+    <div class="location-start">
+      <mat-form-field appearance="standard">
+        <mat-label>Start location</mat-label>
+        <input matInput type="text" formControlName="locationStart" placeholder="Ljubljana">
+      </mat-form-field>
+    </div>
+
+    <div class="location-end">
+      <mat-form-field appearance="standard">
+        <mat-label>End location</mat-label>
+        <input matInput type="text" formControlName="locationEnd" placeholder="Maribor">
+      </mat-form-field>
+    </div>
+
+
+    <div class="description">
+      <mat-form-field appearance="standard">
+        <mat-label>Description</mat-label>
+        <textarea matInput type="text" formControlName="description" placeholder=""></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="extra">
+      <span class="fill"></span>
+      <div class="buttons">
+        <button mat-button type="reset" [disabled]="pathAddForm.disabled">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!pathAddForm.valid || loading">Add</button>
+      </div>
+    </div>
+  </mat-card>
+</form>

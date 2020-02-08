@@ -63,7 +63,7 @@ export class AuthService {
    */
   isAuthenticated$ = this.profile$.pipe(map(profile => profile !== null));
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   /**
    * This function MUST be run once at the start of the aplication. Preferably in AppComponent.
@@ -132,7 +132,7 @@ export class AuthService {
     this.profileSubject$.next(null);
     return this.http.post<IUser>(`${this.baseURL}/logout`, null).pipe(
       tap(
-        () => {},
+        () => { },
         err => {
           if (err && err.status === 401) {
             return;
@@ -141,6 +141,10 @@ export class AuthService {
         }
       )
     );
+  }
+
+  changePassword$({ oldPassword, newPassword }) {
+    return this.http.post(`${this.baseURL}/userinfo/change-password`, { oldPassword, newPassword });
   }
 
   /**

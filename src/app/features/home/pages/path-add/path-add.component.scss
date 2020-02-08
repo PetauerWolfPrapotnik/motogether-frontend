@@ -1,0 +1,51 @@
+.path-add-form {
+  max-width: 600px;
+  width: calc(100% - 10px);
+
+  // border: 1px solid lightblue;
+  // border-radius: 5px;
+  display: block;
+  margin: auto;
+
+  margin-top: 5px;
+
+  .form-error {
+    margin-top: 5px;
+  }
+
+  .title {
+    margin-bottom: -5px;
+  }
+
+  .title,
+  .description,
+  .location-start,
+  .location-end,
+  .description,
+  .starting-time {
+    mat-form-field {
+      margin: auto;
+      display: block;
+      width: calc(100% - 10px);
+    }
+  }
+
+  .extra {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+
+    margin-top: 10px;
+
+    .fill {
+      flex: 1;
+    }
+
+    .link {
+    }
+    .buttons {
+      margin-left: auto;
+      width: 142px;
+    }
+  }
+}

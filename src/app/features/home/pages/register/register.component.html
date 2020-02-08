@@ -1,0 +1,68 @@
+<form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-progress-bar
+      *ngIf="loading || errorMessage"
+      [mode]="errorMessage ? 'determinate' : 'indeterminate'"
+      [color]="errorMessage ? 'warn' : 'primary'"
+      value="100"
+    ></mat-progress-bar>
+    <mat-error class="form-error" *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+
+    <h1 class="title">Register</h1>
+
+    <div class="email">
+      <mat-form-field appearance="standard">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="example@email.com" />
+      </mat-form-field>
+    </div>
+
+    <div class="first-name">
+      <mat-form-field appearance="standard">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" formControlName="first_name" placeholder="First Name" />
+      </mat-form-field>
+    </div>
+
+    <div class="last-name">
+      <mat-form-field appearance="standard">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" formControlName="last_name" placeholder="Last Name" />
+      </mat-form-field>
+    </div>
+
+    <div class="nickname">
+      <mat-form-field appearance="standard">
+        <mat-label>Nickname</mat-label>
+        <input matInput type="text" formControlName="nickname" placeholder="Nickname" />
+      </mat-form-field>
+    </div>
+
+    <div class="password">
+      <mat-form-field appearance="standard">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+    </div>
+
+    <div class="re-password">
+      <mat-form-field appearance="standard">
+        <mat-label>Re-Password</mat-label>
+        <input matInput type="password" formControlName="rePassword" />
+      </mat-form-field>
+    </div>
+
+    <div class="profile-pic">
+      <input type="file" />
+    </div>
+
+    <div class="extra">
+      <a class="link" routerLink="/register">Already have an account?</a>
+      <span class="fill"></span>
+      <div class="buttons">
+        <button mat-button type="reset" [disabled]="registerForm.disabled">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid || loading">Register</button>
+      </div>
+    </div>
+  </mat-card>
+</form>
