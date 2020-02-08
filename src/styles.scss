@@ -18,7 +18,7 @@ $motogether-frontend-accent: mat-palette($mat-pink, A200, A100, A400);
 $motogether-frontend-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$motogether-frontend-theme: mat-light-theme($motogether-frontend-primary, $motogether-frontend-accent, $motogether-frontend-warn);
+$motogether-frontend-theme: mat-dark-theme($motogether-frontend-primary, $motogether-frontend-accent, $motogether-frontend-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
